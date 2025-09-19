@@ -3,16 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>我們的婚禮｜11/1 午宴｜晶華酒店 Noble House（1F）台北</title>
+
+  <!-- ====== 站點標題（請同步改這三處 + JS 常數） ====== -->
+  <title>我們的婚禮｜11/9 午宴｜晶華酒店 Noble House（1F）台北</title>
+  <meta name="apple-mobile-web-app-title" content="我們的婚禮｜11/1 午宴">
+  <meta name="application-name" content="我們的婚禮｜11/1 午宴">
+
+  <!-- ====== 描述（同步 OG 描述） ====== -->
   <meta name="description" content="2025/11/1（六）中午12:00入席、12:30準時開席｜晶華酒店 Noble House（1F）・台北市中山區中山北路二段39巷3號" />
+
+  <!-- ====== Open Graph / 分享卡片 ====== -->
   <meta property="og:title" content="我們的婚禮｜11/1 午宴" />
   <meta property="og:description" content="晶華酒店 Noble House（1F）｜台北市中山區中山北路二段39巷3號｜12:00入席・12:30開席" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="slide_01.jpg" />
+  <meta property="og:image" content="slide_01.jpg?v=1" />
+  <meta property="og:locale" content="zh_TW" />
+
+  <!-- ====== Twitter Card（可選） ====== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="我們的婚禮｜11/1 午宴" />
+  <meta name="twitter:description" content="晶華酒店 Noble House（1F）｜台北市中山區中山北路二段39巷3號｜12:00入席・12:30開席" />
+  <meta name="twitter:image" content="slide_01.jpg?v=1" />
+
   <meta name="theme-color" content="#f6e8e2" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --ink:#5b4b4b; 
@@ -197,12 +215,11 @@
         </div>
 
         <div class="section">
-    		  <h4>停車 Parking</h4>
-    		  <div class="item">
-    			飯店停車場（視車位為準，建議提早到場）
-    			｜<a class="btn" href="https://maps.app.goo.gl/gFqtMjSsdqi9X4TR7" target="_blank" rel="noopener">查看停車場（Google 地圖）</a>
-    		  </div>
-    		</div>
+          <h4>時間 Time</h4>
+          <div class="info-list">
+            <div class="item">中午 <b>12:00</b> 入席，<b>12:30</b> 婚宴準時開席</div>
+          </div>
+        </div>
 
         <div class="section">
           <h4>地點 Location</h4>
@@ -222,9 +239,12 @@
         </div>
 
         <div class="section">
-          <h4>停車 Parking</h4>
-          <div class="item">飯店停車場（視車位為準，建議提早到場）</div>
-        </div>
+		  <h4>停車 Parking</h4>
+		  <div class="item">
+			飯店停車場（視車位為準，建議提早到場）
+			｜<a class="btn" href="https://maps.app.goo.gl/gFqtMjSsdqi9X4TR7" target="_blank" rel="noopener">查看停車場（Google 地圖）</a>
+		  </div>
+		</div>
       </div>
     </section>
   </main>
@@ -312,8 +332,14 @@
   })();
   </script>
 
-  <!-- 音樂控制 + 複製地址 + 行動版畫面切換 -->
+  <!-- 音樂控制 + 複製地址 + 行動版畫面切換 + 標題保險 -->
   <script>
+    // ====== 統一標題（若有其他 JS 蓋掉 <title>，仍以此為準） ======
+    (function(){
+      const TITLE = '我們的婚禮｜11/1 午宴｜晶華酒店 Noble House（1F）台北'; // ← 要換標題，改這裡
+      if (document.title !== TITLE) document.title = TITLE;
+    })();
+
     const audio = document.getElementById('bgm');
     const playBtn = document.getElementById('toggle');
     const hint = document.getElementById('hint');
@@ -476,4 +502,3 @@
   </script>
 </body>
 </html>
-
