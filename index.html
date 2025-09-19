@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>我們的婚禮｜11/1 午宴｜晶華酒店 Noble House（1F）台北</title>
+  <meta name="description" content="2025/11/1（六）中午12:00入席、12:30準時開席｜晶華酒店 Noble House（1F）・台北市中山區中山北路二段39巷3號" />
+  <meta property="og:title" content="我們的婚禮｜11/1 午宴" />
+  <meta property="og:description" content="晶華酒店 Noble House（1F）｜台北市中山區中山北路二段39巷3號｜12:00入席・12:30開席" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="slide_01.jpg" />
+  <meta name="theme-color" content="#f6e8e2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#5b4b4b; 
+      --glow:rgba(255,255,255,.65);
+      --bg1:#fff5f2; --bg2:#fde8ef; --bg3:#f7f2ff;
+      --colH:90vh;
+      --accent:#A98B73;
+      --accent-ink:#fffaf5;
+      --accent-soft:rgba(169,139,115,.12);
+      --shadow:0 20px 35px rgba(180,120,130,.16);
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    /* 行動版預設：允許整頁滾動（修正手機不能滾動） */
+    html,body{overflow:auto;}
+    body{
+      margin:0; color:var(--ink); line-height:1.6;
+      font-family: Inter, system-ui, -apple-system, "Noto Serif TC","PingFang TC","Microsoft JhengHei", Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% 0%, var(--bg2), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, var(--bg3), transparent 60%),
+        radial-gradient(1200px 800px at 50% 120%, #ffe7d8, transparent 60%),
+        linear-gradient(180deg, #fff 0%, var(--bg1) 100%);
+    }
+
+    .wrap{ display:flex; flex-direction:column; max-width:1200px; margin:0 auto; gap:24px; padding:20px; }
+    @media(min-width:900px){
+      .wrap{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:stretch; }
+    }
+
+    /* ====== 行動版：切換式兩畫面（左/右卡片） ====== */
+    @media(max-width:899px){
+      .wrap{ position:relative; height:100svh; padding:0; max-width:none; }
+      /* 疊放兩卡片，使用 transform 切換 */
+      .viewer, .panel{ position:absolute; inset:0; height:100vh; height:100svh; margin:0; border-radius:0; }
+      .viewer{ transform:translateX(0%); transition: transform .55s var(--ease); overflow:hidden; }
+      .panel{ transform:translateX(100%); transition: transform .55s var(--ease); }
+      body.mode-panel .viewer{ transform:translateX(-100%); }
+      body.mode-panel .panel{ transform:translateX(0%); }
+    }
+
+    /* 共用 viewer 樣式 */
+    .viewer{
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.7);
+      backdrop-filter:saturate(140%) blur(10px);
+      box-shadow:var(--shadow);
+      border-radius:26px;
+      overflow:hidden;
+    }
+
+    /* 桌機：兩欄滿版視覺，且鎖住整頁滾動（僅桌機） */
+    @media(min-width:900px){
+      html,body{overflow:hidden;}
+      .viewer{ height:var(--colH); max-height:none; }
+      .panel{ height:var(--colH);}    
+
+      /* 💻 電腦版只隱藏左側 viewer 的滾輪（仍可滾動） */
+      .viewer{ scrollbar-width: none; -ms-overflow-style: none; }
+      .viewer::-webkit-scrollbar{ display: none; }
+    }
+
+    /* === 輪播（Carousel）樣式 === */
+    .carousel{ position:relative; width:100%; height:100%; }
+    .slides{ list-style:none; margin:0; padding:0; width:100%; height:100%; display:flex; transition: transform .6s var(--ease); }
+    .slide{ flex: 0 0 100%; height:100%; position:relative; }
+    .slide img{ width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; }
+
+    .ctrl{ position:absolute; top:50%; transform:translateY(-50%); z-index:5; border:none; background:linear-gradient(180deg, var(--glow), rgba(255,255,255,.5)); border:1px solid rgba(255,255,255,.75); box-shadow:0 10px 18px rgba(0,0,0,.18); padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:800; color:#6a4b3e; }
+    .prev{ left:12px; }
+    .next{ right:12px; }
+
+    .dots{ position:absolute; left:0; right:0; bottom:12px; display:flex; gap:8px; justify-content:center; z-index:5; }
+    .dot{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.15); box-shadow:0 2px 6px rgba(0,0,0,.16); }
+    .dot[aria-current="true"]{ background:#fff; transform:scale(1.15); }
+
+    .panel{ background:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.85); border-radius:22px; box-shadow:0 16px 28px rgba(130,120,180,.14); display:flex; flex-direction:column; }
+    @media(min-width:900px){ .panel{ height:var(--colH);} }
+    .panel-inner{ padding:24px 18px; overflow:auto; -webkit-overflow-scrolling: touch; height:100%; }
+    .panel h3{ margin:0 0 10px; font-family:"Noto Serif TC", serif; font-weight:700; color:#734e57; letter-spacing:.06em; text-align:center; }
+    .muted{opacity:.78; font-size:.95rem; text-align:center}
+
+    .section{ margin-top:18px; }
+    .section h4{ margin:0 0 8px; font-size:1.06rem; color:#6a4b57; }
+    .section p{ margin:0 0 8px; font-size:.96rem; }
+
+    .info-list{ display:grid; grid-template-columns: 1fr; gap:12px; }
+    .item{ padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.65); border:1px solid rgba(0,0,0,.06); box-shadow:0 4px 12px rgba(0,0,0,.05); }
+    .label{ font-weight:700; }
+
+    .map{ border:0; border-radius:16px; width:100%; height:260px; box-shadow:0 6px 14px rgba(0,0,0,.12); }
+
+    .nav-btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .btn{ border:none; cursor:pointer; padding:10px 14px; border-radius:999px; background:linear-gradient(180deg, var(--glow), rgba(255,255,255,.4)); box-shadow:0 10px 18px rgba(169,139,115,.18), inset 0 0 0 1px rgba(255,255,255,.75); font-weight:600; color:#6a4b3e; backdrop-filter:saturate(140%) blur(6px); text-decoration:none; display:inline-block; }
+    .chip{font-size:.85rem; padding:8px 12px; background:rgba(255,255,255,.6); border-radius:999px; border:1px solid rgba(255,255,255,.8)}
+    .copy{ font-size:.86rem; margin-left:6px; }
+
+    footer{ text-align:center; font-size:.86rem; opacity:.7; padding:12px 0 24px; }
+
+    /* ==== 播放音樂：右上角，避開安全區，層級提高 ==== */
+    .music{ position: fixed; right: max(16px, env(safe-area-inset-right)); top:  max(16px, env(safe-area-inset-top)); z-index: 50; display:flex; gap:10px; align-items:center; }
+    .hide{display:none}
+
+    /* ==== 倒數：以 #A98B73 為主色 ==== */
+    .countdown{ margin-top:10px; border-radius:20px; background:var(--accent); color:var(--accent-ink); box-shadow:0 16px 28px rgba(169,139,115,.35); padding:18px 14px;   overflow-x:auto; border:1px solid rgba(255,255,255,.28); }
+    .cd-grid{ display:grid; grid-template-columns: repeat(5, minmax(72px, 1fr)); gap:12px; white-space:nowrap; }
+    .cd-box{ display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:12px 6px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,.12), inset 0 0 0 1px rgba(255,255,255,.06); }
+    .cd-num{ font-weight:800; font-size: clamp(22px, 6.2vw, 56px); line-height:1; letter-spacing:.02em; white-space:nowrap; color:var(--accent-ink); text-shadow:0 1px 0 rgba(0,0,0,.15); }
+    .cd-lab{ opacity:.95; font-weight:700; letter-spacing:.12em; font-size: clamp(10px, 2.8vw, 14px); margin-top:6px; color:#fff7ef; }
+    .cd-title{ display:flex; align-items:center; gap:10px; color:#fff7ef; opacity:.95; font-weight:800; letter-spacing:.08em; margin:2px 0 12px; text-shadow:0 2px 0 rgba(0,0,0,.18); }
+    .cd-dot{ flex:1; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent) }
+    .cd-done{ text-align:center; padding:12px; font-weight:700; color:#fff; }
+
+    /* === 浮動切換按鈕（僅手機顯示） === */
+    .fab{ position:fixed; right:16px; bottom:16px; z-index:40; border:none; border-radius:999px; padding:14px 18px; font-weight:800; letter-spacing:.08em; background:linear-gradient(180deg, var(--glow), rgba(255,255,255,.6)); box-shadow:0 16px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.75); color:#6a4b3e; backdrop-filter:saturate(140%) blur(6px); display:flex; align-items:center; gap:10px; transition: transform .4s var(--ease), box-shadow .3s var(--ease); }
+    .fab .dot{ width:8px; height:8px; border-radius:50%; background:#6a4b3e; opacity:.6; }
+    .fab .icon{ display:inline-block; transform:rotate(0deg); transition: transform .4s var(--ease); font-size:18px; }
+    body.mode-panel .fab .icon{ transform:rotate(180deg); }
+    .fab:active{ transform: translateY(1px) scale(.98); }
+    @media(min-width:900px){ .fab{ display:none; } }
+
+    /* 面板頂部返回列（手機） */
+    .topbar{ display:none; }
+    @media(max-width:899px){
+      .topbar{ position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:8px; padding:10px 8px; background:rgba(255,255,255,.85); backdrop-filter: blur(8px); border-bottom:1px solid rgba(0,0,0,.06); }
+      .back-btn{ border:none; background:rgba(0,0,0,.04); border:1px solid rgba(0,0,0,.06); padding:8px 12px; border-radius:12px; font-weight:700; }
+    }
+
+    /* 動畫偏好：減少動作 */
+    @media (prefers-reduced-motion: reduce){ .viewer,.panel,.fab,.slides{ transition:none !important; } }
+  </style>
+</head>
+<body class="mode-viewer">
+  <main class="wrap">
+    <!-- 左：主視覺改為『清單＋輪播』 -->
+    <section class="viewer" id="viewer" aria-label="婚禮邀請視覺">
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="婚禮圖片輪播">
+        <!-- Slides（以 <li> 清單表示，新增圖片就複製一行 li） -->
+        <ul class="slides" id="track" aria-live="polite">
+          <li class="slide" aria-label="第 1 張，共 4 張"><img src="slide_01.jpg" alt="婚禮照片 1"></li>
+          <li class="slide" aria-label="第 2 張，共 4 張"><img src="slide_02.jpg" alt="婚禮照片 2"></li>
+          <li class="slide" aria-label="第 3 張，共 4 張"><img src="slide_03.jpg" alt="婚禮照片 3"></li>
+          <li class="slide" aria-label="第 4 張，共 4 張"><img src="slide_04.jpg" alt="婚禮照片 4"></li>
+        </ul>
+        <button class="ctrl prev" id="prev" aria-label="上一張">‹</button>
+        <button class="ctrl next" id="next" aria-label="下一張">›</button>
+        
+      </div>
+    </section>
+
+    <!-- 右：倒數與地點（資訊面板） -->
+    <section class="panel" id="infoPanel" aria-label="資訊與地圖">
+      <div class="topbar">
+        <button id="backBtn" class="back-btn" aria-label="回到邀請視覺">← 返回</button>
+        <strong>婚禮資訊</strong>
+      </div>
+      <div class="panel-inner" tabindex="-1">
+        <h3>我們的婚禮倒數</h3>
+        <div class="muted">期待與您共享喜悅</div>
+
+        <!-- 倒數（主色 #A98B73） -->
+        <div id="countdown" class="countdown" role="group" aria-label="倒數計時">
+          <div class="cd-title">
+            <span>WEDDING&nbsp;INVITATION</span><span class="cd-dot" aria-hidden="true"></span>
+          </div>
+          <div class="cd-grid" aria-live="polite">
+            <div class="cd-box"><div class="cd-num" id="cd-months">--</div><div class="cd-lab">MONTH</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-lab">DAYS</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-lab">HOURS</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-lab">MINUTES</div></div>
+            <div class="cd-box"><div class="cd-num" id="cd-secs">--</div><div class="cd-lab">SECONDS</div></div>
+          </div>
+          <div id="cd-done" class="cd-done" hidden>🎉 今天見！</div>
+        </div>
+
+        <div class="section">
+          <h4>日期 Date</h4>
+          <div class="info-list">
+            <div class="item"><span class="label">2025/11/1（六）</span> Saturday Lunch 午宴</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>時間 Time</h4>
+          <div class="info-list">
+            <div class="item">中午 <b>12:00</b> 入席，<b>12:30</b> 婚宴準時開席</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>地點 Location</h4>
+          <p>晶華酒店・<b>晶華會 Noble House（1F）</b></p>
+          <p>
+            <span id="addr">台北市中山區中山北路二段39巷3號</span>
+            <button class="btn copy" id="copyBtn" aria-label="複製地址">複製地址</button>
+          </p>
+          <iframe class="map"
+            title="Google 地圖 - 晶華酒店 Noble House"
+            src="https://www.google.com/maps?q=%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E4%B8%AD%E5%B1%B1%E5%8C%97%E8%B7%AF%E4%BA%8C%E6%AE%B5%2039%E5%B7%B7%203%E8%99%9F%20%E6%99%B6%E8%8F%AF%E9%85%92%E5%BA%97%20Noble%20House&output=embed"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="nav-btns" role="group" aria-label="導航按鈕">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps?q=%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E4%B8%AD%E5%B1%B1%E5%8C%97%E8%B7%AF%E4%BA%8C%E6%AE%B5%2039%E5%B7%B7%203%E8%99%9F%20%E6%99%B6%E8%8F%AF%E9%85%92%E5%BA%97%20Noble%20House">打開 Google Maps</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.apple.com/?q=%E6%99%B6%E8%8F%AF%E9%85%92%E5%BA%97%20Noble%20House&address=%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E4%B8%AD%E5%B1%B1%E5%8C%97%E8%B7%AF%E4%BA%8C%E6%AE%B5%2039%E5%B7%B7%203%E8%99%9F">打開 Apple 地圖</a>
+          </div>
+        </div>
+
+        <div class="section">
+          <h4>停車 Parking</h4>
+          <div class="item">飯店停車場（視車位為準，建議提早到場）</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Our Wedding</footer>
+
+  <!-- 背景音樂 -->
+  <audio id="bgm" src="music.mp3" preload="auto" loop></audio>
+  <div class="music" aria-live="polite">
+    <button id="toggle" class="btn">▶︎ 播放音樂</button>
+    <span id="hint" class="chip hide">若未自動播放，請點一下畫面</span>
+  </div>
+
+  <!-- 浮動切換鍵（手機） -->
+  <button id="fab" class="fab" aria-controls="infoPanel" aria-expanded="false">
+    <span class="icon">⇄</span>
+    <span class="label">查看資訊</span>
+    <span class="dot" aria-hidden="true"></span>
+  </button>
+
+  <!-- 輪播邏輯（可自動播放、可滑動） -->
+  <script>
+  (() => {
+    const track = document.getElementById('track');
+    const slides = Array.from(track.querySelectorAll('.slide'));
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const dotsWrap = document.getElementById('dots'); // 圓點已移除（若要恢復，加入 <div id="dots" class="dots"></div>）
+
+    const total = slides.length;
+    let index = 0;
+
+    // 產生圓點（已關閉；保留相容程式碼）
+    if (dotsWrap) {
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot';
+        b.role = 'tab';
+        b.ariaLabel = `第 ${i+1} 張`;
+        b.addEventListener('click', () => go(i, true));
+        dotsWrap.appendChild(b);
+      });
+    }
+
+    function update(){
+      track.style.transform = `translateX(${-index*100}%)`;
+      if (dotsWrap) Array.from(dotsWrap.children).forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true' : 'false'));
+    }
+
+    function go(i, user=false){
+      index = (i + total) % total;
+      update();
+      if(user) pauseAutoTemporarily();
+    }
+
+    prev.addEventListener('click', () => go(index-1, true));
+    next.addEventListener('click', () => go(index+1, true));
+
+    // 觸控滑動
+    let sx=0, dx=0, touching=false;
+    track.addEventListener('touchstart', (e)=>{ touching=true; sx=e.touches[0].clientX; dx=0; pauseAutoTemporarily(); }, {passive:true});
+    track.addEventListener('touchmove', (e)=>{ if(!touching) return; dx=e.touches[0].clientX - sx; }, {passive:true});
+    track.addEventListener('touchend', ()=>{ if(Math.abs(dx)>40){ go(index + (dx<0?1:-1)); } touching=false; dx=0; });
+
+    // 自動播放
+    let timer=null; let paused=false; const INTERVAL=4500;
+    function playAuto(){ if(timer||paused||total<2) return; timer=setInterval(()=> go(index+1), INTERVAL); }
+    function stopAuto(){ if(timer){ clearInterval(timer); timer=null; } }
+    function pauseAutoTemporarily(){ stopAuto(); setTimeout(()=> !paused && playAuto(), 6000); }
+
+    // 可見性與滑鼠懸停控制
+    document.addEventListener('visibilitychange', ()=> document.hidden ? stopAuto() : playAuto());
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', playAuto);
+
+    // 初始
+    update();
+    playAuto();
+
+    // 提供給外部（切到 infoPanel 時暫停）
+    window.ViewerAuto = {
+      start(){ paused=false; playAuto(); },
+      stop(){ paused=true; stopAuto(); }
+    };
+  })();
+  </script>
+
+  <!-- 音樂控制 + 複製地址 + 行動版畫面切換 -->
+  <script>
+    const audio = document.getElementById('bgm');
+    const playBtn = document.getElementById('toggle');
+    const hint = document.getElementById('hint');
+
+    async function setPlaying(playing){
+      try{
+        if(playing){
+          await audio.play();
+          playBtn.textContent='⏸︎ 暫停音樂';
+          hint.classList.add('hide');
+        } else {
+          audio.pause();
+          playBtn.textContent='▶︎ 播放音樂';
+        }
+      }catch(e){ hint.classList.remove('hide'); }
+    }
+    document.addEventListener('DOMContentLoaded',()=>setPlaying(true));
+    window.addEventListener('click',()=>audio.paused&&setPlaying(true));
+    window.addEventListener('touchstart',()=>audio.paused&&setPlaying(true));
+    playBtn.addEventListener('click',()=>audio.paused?setPlaying(true):setPlaying(false));
+
+    // 複製地址（僅改動複製鈕文字）
+    document.getElementById('copyBtn').addEventListener('click', async (e) => {
+      const addr = document.getElementById('addr').textContent.trim();
+      const self = e.currentTarget;
+      try{
+        await navigator.clipboard.writeText(addr);
+        const old = self.textContent;
+        self.textContent = '已複製 ✓';
+        setTimeout(()=> self.textContent = old, 1200);
+      }catch(err){}
+    });
+
+    // ====== 行動版：主視覺 <-> 資訊 面板切換 ======
+    const fab = document.getElementById('fab');
+    const backBtn = document.getElementById('backBtn');
+    const panel = document.getElementById('infoPanel');
+
+    function toPanel(){
+      document.body.classList.add('mode-panel');
+      fab.setAttribute('aria-expanded','true');
+      const inner = panel.querySelector('.panel-inner');
+      setTimeout(()=> inner && inner.focus(), 300);
+      if(window.ViewerAuto) window.ViewerAuto.stop();
+      fab.querySelector('.label').textContent = '回到主視覺';
+    }
+    function toViewer(){
+      document.body.classList.remove('mode-panel');
+      fab.setAttribute('aria-expanded','false');
+      if(window.ViewerAuto) window.ViewerAuto.start();
+      fab.querySelector('.label').textContent = '查看資訊';
+    }
+
+    fab.addEventListener('click', () => {
+      const expanded = fab.getAttribute('aria-expanded') === 'true';
+      if(expanded) { toViewer(); } else { toPanel(); }
+    });
+    backBtn.addEventListener('click', toViewer);
+
+    // 鍵盤快速鍵：Esc 回到主視覺
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') toViewer(); });
+  </script>
+
+  <!-- 倒數計時器（純前端） -->
+  <script>
+  /**
+   * 自家倒數：到 2025-11-01 12:30:00 +08:00
+   * - 以「曆法月」計算：先扣完整月，再拆成天/時/分/秒
+   * - 每秒更新、無外部依賴、支援讀屏（aria-live）
+   */
+  (function(){
+    const $ = (id) => document.getElementById(id);
+    const pad2 = (n) => String(Math.max(0, Math.floor(n))).padStart(2,'0');
+
+    // 目標時間（台北 +08:00）
+    const target = new Date('2025-11-01T12:30:00+08:00');
+
+    // 保留日期的加月 helper（若新月份無該日，取月底）
+    function addMonthsKeepDate(d, m){
+      const dt = new Date(d.getTime());
+      const wantDay = dt.getDate();
+      dt.setDate(1);
+      dt.setMonth(dt.getMonth() + m);
+      const lastDay = new Date(dt.getFullYear(), dt.getMonth()+1, 0).getDate();
+      dt.setDate(Math.min(wantDay, lastDay));
+      return dt;
+    }
+
+    // 取得「月/天/時/分/秒」差
+    function diffParts(now, end){
+      if (now >= end) return {done:true, months:0, days:0, hours:0, minutes:0, seconds:0};
+      let months = 0;
+      let t = new Date(now.getTime());
+      while (true){
+        const next = addMonthsKeepDate(t, 1);
+        if (next <= end){ t = next; months++; } else { break; }
+      }
+      let ms = end - t;
+      const days = Math.floor(ms / (24*3600e3)); ms -= days * 24*3600e3;
+      const hours = Math.floor(ms / 3600e3);     ms -= hours * 3600e3;
+      const minutes = Math.floor(ms / 60e3);     ms -= minutes * 60e3;
+      const seconds = Math.floor(ms / 1e3);
+      return {done:false, months, days, hours, minutes, seconds};
+    }
+
+    const elM = $('cd-months'), elD = $('cd-days'), elH = $('cd-hours'),
+          elMin = $('cd-mins'), elS = $('cd-secs'), elDone = $('cd-done');
+
+    let rafId = 0, lastWholeSec = -1;
+
+    function tick(){
+      const now = new Date();
+      const wholeSec = Math.floor(now.getTime()/1000);
+      if (wholeSec !== lastWholeSec){
+        lastWholeSec = wholeSec;
+        const d = diffParts(now, target);
+        if (d.done){
+          elDone.hidden = false;
+          elM.textContent = '00'; elD.textContent = '00';
+          elH.textContent = '00'; elMin.textContent = '00'; elS.textContent = '00';
+          cancelAnimationFrame(rafId);
+          return;
+        }
+        elM.textContent   = pad2(d.months);
+        elD.textContent   = pad2(d.days);
+        elH.textContent   = pad2(d.hours);
+        elMin.textContent = pad2(d.minutes);
+        elS.textContent   = pad2(d.seconds);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+  </script>
+
+  <!-- 結構化資料（分享/搜尋顯示） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "我們的婚禮 午宴",
+    "startDate": "2025-11-01T12:30:00+08:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "晶華酒店 晶華會 Noble House（1F）",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "中山北路二段39巷3號",
+        "addressLocality": "中山區",
+        "addressRegion": "台北市",
+        "addressCountry": "TW"
+      }
+    },
+    "image": ["slide_01.jpg", "slide_02.jpg", "slide_03.jpg", "slide_04.jpg"],
+    "description": "2025/11/1（六）中午12:00入席、12:30準時開席。地點：台北市中山區中山北路二段39巷3號・晶華酒店 晶華會 Noble House（1F）",
+    "organizer": {"@type":"Organization","name":"Our Wedding"}
+  }
+  </script>
+</body>
+</html>
